@@ -15,6 +15,7 @@ public class CardGame {
     // Game state
     boolean playerOneTurn = true;
     Card lastPlayedCard;
+    Card lastPlayedCard2;
     boolean gameActive;
 
     // UI
@@ -25,8 +26,8 @@ public class CardGame {
     int drawButtonHeight = 35;
 
     public CardGame() {
-        initializeGame();
-        dealCards(6);
+        //initializeGame();
+        //dealCards(6);
     }
 
     protected void initializeGame() {
@@ -63,7 +64,7 @@ public class CardGame {
         for (int i = 0; i < numCards; i++) {
             playerOneHand.addCard(deck.remove(0));
             Card card = deck.remove(0);
-            card.setTurned(true);
+            card.setTurned(false);
             playerTwoHand.addCard(card);
         }
 
@@ -103,6 +104,7 @@ public class CardGame {
 
     public boolean playCard(Card card, Hand hand) {
         // Check if card is valid to play
+        System.out.println("played a carr");
         if (!isValidPlay(card)) {
             System.out.println("Invalid play: " + card.value + " of " + card.suit);
             return false;
