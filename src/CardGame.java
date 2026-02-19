@@ -15,7 +15,6 @@ public class CardGame {
     // Game state
     boolean playerOneTurn = true;
     Card lastPlayedCard;
-    Card lastPlayedCard2;
     boolean gameActive;
 
     // UI
@@ -171,14 +170,14 @@ public class CardGame {
             return;
         }
 
-        if (selectedCard == clickedCard) {
-            System.out.println("playing card: " + selectedCard.value + " of " + selectedCard.suit);
-            if (playCard(selectedCard, playerOneHand)) {
-                selectedCard.setSelected(false, selectedCardRaiseAmount);
-                selectedCard = null;
-            }
-            return;
-        }
+        // if (selectedCard == clickedCard) {
+        //     System.out.println("playing card: " + selectedCard.value + " of " + selectedCard.suit);
+        //     if (playCard(selectedCard, playerOneHand)) {
+        //         selectedCard.setSelected(false, selectedCardRaiseAmount);
+        //         selectedCard = null;
+        //     }
+        //     return;
+        // }
         // change selection
         selectedCard.setSelected(false, selectedCardRaiseAmount);
         selectedCard = clickedCard;

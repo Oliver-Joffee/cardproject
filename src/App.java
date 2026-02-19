@@ -51,10 +51,16 @@ public class App extends PApplet {
         text("Deck Size: " + cardGame.getDeckSize(), width / 2,
                 height - 20);
         // Display last played card
-        if (cardGame.getLastPlayedCard() != null) {
-            cardGame.getLastPlayedCard().setPosition(width / 2 - 40, height / 2 - 60, 80, 120);
-            cardGame.getLastPlayedCard().draw(this);
+        if (cardGame.getLastPlayedCard(1) != null) {
+            cardGame.getLastPlayedCard(1).setPosition(cardGame.discard1x, cardGame.discardy, 80, 120);
+            cardGame.getLastPlayedCard(1).draw(this);
         }
+
+        if (cardGame.getLastPlayedCard(2) != null) {
+            cardGame.getLastPlayedCard(2).setPosition(cardGame.discard2x, cardGame.discardy, 80, 120);
+            cardGame.getLastPlayedCard(2).draw(this);
+        }
+
         if (cardGame.getCurrentPlayer() == "Player Two") {
             fill(0);
             textSize(16);

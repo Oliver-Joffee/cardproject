@@ -8,11 +8,30 @@ public class Speed extends CardGame {
     ArrayList<Card> discard2;
     ArrayList<Card> deck1;
     ArrayList<Card> deck2;
+    ClickableRectangle pile1;
+    ClickableRectangle pile2;
+
+    int discard1x = 210;
+    int discard2x = 310;
+    int discardHeight = 120;
+    int discardWidth = 80;
+    int discardy = 240;
 
     public Speed() {
         super();
         speedInitializeGame();
         dealCards(5);
+
+        pile1 = new ClickableRectangle();
+        pile2 = new ClickableRectangle();
+        pile1.x = discard1x;
+        pile1.y = discardy;
+        pile1.height = discardHeight;
+        pile1.width = discardWidth;
+        pile2.x = discard2x;
+        pile2.y = discardy;
+        pile2.height = discardHeight;
+        pile2.width = discardWidth;
     }
 
     protected void speedInitializeGame() {
@@ -30,9 +49,33 @@ public class Speed extends CardGame {
         if (discard.get(discard.size()-1).getValue() == card.getValue() + 1 || discard.get(discard.size()-1).getValue() == card.getValue() - 1) {
             discard.add(card);
             hand.removeCard(card);
+            card.setTurned(false);
             return true;
         } else {
             return false;
+        }
+    }
+
+    public Card getLastPlayedCard(int pile) {
+        if (pile == 1) {
+            return discard1.getLast();
+        } else {
+            return discard2.getLast();
+        }
+    }
+
+    @Override
+    public void handleCardClick(int mouseX, int mouseY) {
+        super.handleCardClick(mouseX, mouseY);
+        if (selectedCard != null) {
+            if (pile1.isClicked(mouseX, mouseY)) {
+                playCard(selectedCard, playerOneHand, discard1);
+                selectedCard = null;
+            }
+            if (pile2.isClicked(mouseX, mouseY)){
+                playCard(selectedCard, playerOneHand, discard2);
+                selectedCard = null;
+            }
         }
     }
     
@@ -72,6 +115,9 @@ public class Speed extends CardGame {
         deck1.remove(0);
         discard2.add(deck2.get(0));
         deck2.remove(0);
+
+        discard1.get(0).setTurned(false);
+        discard2.get(0).setTurned(false);
 
         System.out.println("help please cards dealt");
         playerOneHand.positionCards(50, 450, 80, 120, 20);

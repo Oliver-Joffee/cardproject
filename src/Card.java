@@ -63,7 +63,6 @@ public class Card extends ClickableRectangle {
     }
 
     public void setPosition(int x, int y, int width, int height) {
-        System.out.println("we are being positioned" + x + " " + y + " " + width + " " +height);
         this.x = x;
         this.y = y;
         this.width = width;
