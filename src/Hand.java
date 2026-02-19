@@ -31,6 +31,7 @@ public class Hand {
     }
     
     public void positionCards(int startX, int startY, int cardWidth, int cardHeight, int spacing) {
+        
         for (int i = 0; i < cards.size(); i++) {
             int x = startX + (i * spacing);
             cards.get(i).setPosition(x, startY, cardWidth, cardHeight);

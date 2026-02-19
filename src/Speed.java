@@ -8,10 +8,14 @@ public class Speed extends CardGame {
     ArrayList<Card> discard2;
     ArrayList<Card> deck1;
     ArrayList<Card> deck2;
-    Hand playerOneHand;
-    Hand playerTwoHand;
 
     public Speed() {
+        super();
+        speedInitializeGame();
+        dealCards(5);
+    }
+
+    protected void speedInitializeGame() {
         playerOneDeck = new ArrayList<>();
         playerTwoDeck = new ArrayList<>();
         discard1 = new ArrayList<>();
@@ -20,10 +24,18 @@ public class Speed extends CardGame {
         deck2  = new ArrayList<>();
         playerOneHand = new Hand();
         playerTwoHand = new Hand(); 
-        initializeGame();
-        dealCards(5);
-        System.out.println("this is player speaking" + playerOneHand.getSize());
     }
+
+    public boolean playCard(Card card, Hand hand, ArrayList<Card> discard) {
+        if (discard.get(discard.size()-1).getValue() == card.getValue() + 1 || discard.get(discard.size()-1).getValue() == card.getValue() - 1) {
+            discard.add(card);
+            hand.removeCard(card);
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
     
     @Override
     public void dealCards(int numCards) {
@@ -55,6 +67,14 @@ public class Speed extends CardGame {
             Card card2 = playerTwoDeck.remove(0);
             playerTwoHand.addCard(card2);
         }
+
+        discard1.add(deck1.get(0));
+        deck1.remove(0);
+        discard2.add(deck2.get(0));
+        deck2.remove(0);
+
         System.out.println("help please cards dealt");
+        playerOneHand.positionCards(50, 450, 80, 120, 20);
+        playerTwoHand.positionCards(50, 50, 80, 120, 20);
     }
 }

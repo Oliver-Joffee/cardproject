@@ -2,7 +2,7 @@ import processing.core.PApplet;
 
 public class App extends PApplet {
 
-    CardGame cardGame = new Speed();
+    Speed cardGame = new Speed();
     private int timer;
 
     public static void main(String[] args) {
@@ -16,14 +16,14 @@ public class App extends PApplet {
     @Override
     public void draw() {
         background(255);
-        //print("Player one has" + cardGame.playerOneHand.getSize());
+        
         // Draw player hands
-        print("It is " + cardGame.playerOneHand.getSize());
+        
         for (int i = 0; i < cardGame.playerOneHand.getSize(); i++) {
-            print("drawing");
+            
             Card card = cardGame.playerOneHand.getCard(i);
             if (card != null) {
-                print("drawing frfr");
+                
                 card.draw(this);
             }
         }

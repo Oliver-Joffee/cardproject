@@ -26,12 +26,15 @@ public class CardGame {
     int drawButtonHeight = 35;
 
     public CardGame() {
-        //initializeGame();
+        System.out.println("Card game init");
+        
+        initializeGame();
         //dealCards(6);
     }
 
     protected void initializeGame() {
         // Initialize draw button
+        System.out.println("Init game init");
         drawButton = new ClickableRectangle();
         drawButton.x = drawButtonX;
         drawButton.y = drawButtonY;
@@ -39,10 +42,10 @@ public class CardGame {
         drawButton.height = drawButtonHeight;
 
         // Initialize decks and hands
-        deck = new ArrayList<>();
-        discardPile = new ArrayList<>();
-        playerOneHand = new Hand();
-        playerTwoHand = new Hand();
+        // deck = new ArrayList<>();
+        // discardPile = new ArrayList<>();
+        //playerOneHand = new Hand();
+        //playerTwoHand = new Hand();
         gameActive = true;
 
         createDeck();
@@ -50,6 +53,7 @@ public class CardGame {
 
     protected void createDeck() {
         // Create a standard deck of cards (for simplicity, using numbers and suits)
+        System.out.println("Create deck init");
         String[] suits = { "Hearts", "Diamonds", "Clubs", "Spades" };
         String[] values = { "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A" };
         for (String suit : suits) {
@@ -57,6 +61,7 @@ public class CardGame {
                 deck.add(new Card(value, suit));
             }
         }
+        System.out.println("Deck length =" + deck.size());
     }
 
     protected void dealCards(int numCards) {
@@ -182,6 +187,7 @@ public class CardGame {
 
     // return the card that is clicked!
     public Card getClickedCard(int mouseX, int mouseY) {
+        //return playerOneHand.getCard(0);
         for (int i = playerOneHand.getSize() - 1; i >= 0; i--) {
             Card card = playerOneHand.getCard(i);
             if (card != null && card.isClicked(mouseX, mouseY)) {

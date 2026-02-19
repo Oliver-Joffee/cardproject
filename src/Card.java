@@ -63,14 +63,20 @@ public class Card extends ClickableRectangle {
     }
 
     public void setPosition(int x, int y, int width, int height) {
+        System.out.println("we are being positioned" + x + " " + y + " " + width + " " +height);
         this.x = x;
         this.y = y;
         this.width = width;
         this.height = height;
     }
 
+    public Integer getValue() {
+        return Integer.parseInt(value);
+    }
+
     @Override
     public void draw(PApplet sketch) {
+        
         if (turned) {
             sketch.fill(150);
             sketch.rect(x, y, width, height);
