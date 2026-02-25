@@ -45,15 +45,45 @@ public class Speed extends CardGame {
         playerTwoHand = new Hand(); 
     }
 
+    public int getPlayerOneSize() {
+        return playerOneDeck.size();
+    }
+
+    public int getPlayerTwoSize() {
+        return playerTwoDeck.size();
+    }
+
+    @Override
+    public void handleDrawButtonClick(int mouseX, int mouseY) {
+        if (drawButton.isClicked(mouseX, mouseY)) {
+            drawCard(playerOneHand, playerOneDeck);
+            // Switch turns after drawing
+        }
+    }
+
+    public void drawCard(Hand hand, ArrayList<Card> deck) {
+        if (deck.size() > 0 && hand.getSize() < 5) {
+            Card card = deck.get(0);
+            deck.remove(0);
+            hand.addCard(card);
+            card.setTurned(false);
+            hand.positionCards(50, 450, 80, 120, 20);
+        }
+
+    }
+
     public boolean playCard(Card card, Hand hand, ArrayList<Card> discard) {
         if (discard.get(discard.size()-1).getValue() == card.getValue() + 1 || discard.get(discard.size()-1).getValue() == card.getValue() - 1) {
             discard.add(card);
             hand.removeCard(card);
             card.setTurned(false);
+            card.setSelected(false, selectedCardRaiseAmount);
+            hand.positionCards(50, 450, 80, 120, 20);
             return true;
         } else {
             return false;
         }
+        
     }
 
     public Card getLastPlayedCard(int pile) {

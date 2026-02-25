@@ -70,6 +70,15 @@ public class Card extends ClickableRectangle {
     }
 
     public Integer getValue() {
+        if (value == "J") {
+            return 11;
+        } else if (value == "Q") {
+            return 12;
+        } else if (value == "K") {
+            return 13;
+        } else if (value == "A") {
+            return 1;
+        }
         return Integer.parseInt(value);
     }
 

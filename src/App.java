@@ -3,6 +3,7 @@ import processing.core.PApplet;
 public class App extends PApplet {
 
     Speed cardGame = new Speed();
+    SpeedComputer computer = new SpeedComputer(cardGame);
     private int timer;
 
     public static void main(String[] args) {
@@ -16,6 +17,9 @@ public class App extends PApplet {
     @Override
     public void draw() {
         background(255);
+
+        //Use computer
+        computer.draw();
         
         // Draw player hands
         
@@ -48,8 +52,7 @@ public class App extends PApplet {
         //text("Current Player: " + cardGame.getCurrentPlayer(), width / 2, 20);
 
         // Display deck size
-        text("Deck Size: " + cardGame.getDeckSize(), width / 2,
-                height - 20);
+        text("Deck Size: " + cardGame.getPlayerOneSize(), width / 2, height - 20);
         // Display last played card
         if (cardGame.getLastPlayedCard(1) != null) {
             cardGame.getLastPlayedCard(1).setPosition(cardGame.discard1x, cardGame.discardy, 80, 120);
@@ -81,5 +84,4 @@ public class App extends PApplet {
         cardGame.handleDrawButtonClick(mouseX, mouseY);
         cardGame.handleCardClick(mouseX, mouseY);
     }
-
 }
