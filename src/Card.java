@@ -11,6 +11,20 @@ public class Card extends ClickableRectangle {
     private int baseY;
     private boolean hasBaseY = false;
 
+    public Integer getValue() {
+        
+        if (value == "J") {
+            return 11;
+        } else if (value == "Q") {
+            return 12;
+        } else if (value == "K") {
+            return 13;
+        } else if (value == "A") {
+            return 1;
+        }
+        return Integer.parseInt(value);
+    }
+
     Card(String value, String suit) {
         this.value = value;
         this.suit = suit;
@@ -67,19 +81,6 @@ public class Card extends ClickableRectangle {
         this.y = y;
         this.width = width;
         this.height = height;
-    }
-
-    public Integer getValue() {
-        if (value == "J") {
-            return 11;
-        } else if (value == "Q") {
-            return 12;
-        } else if (value == "K") {
-            return 13;
-        } else if (value == "A") {
-            return 1;
-        }
-        return Integer.parseInt(value);
     }
 
     @Override

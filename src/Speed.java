@@ -158,7 +158,6 @@ public class Speed extends CardGame {
     @Override
     public void dealCards(int numCards) {
         Collections.shuffle(deck);
-        System.out.println("AHHHHHHH");
         for (int i = 0; i < 21; i ++) {
             Card card = deck.remove(0);
             card.setTurned(true);

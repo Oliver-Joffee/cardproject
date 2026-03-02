@@ -1,18 +1,1 @@
-## Getting Started
-
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
-
-## Folder Structure
-
-The workspace contains two folders by default, where:
-
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
-
-Meanwhile, the compiled output files will be generated in the `bin` folder by default.
-
-> If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
-
-## Dependency Management
-
-The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
+My project is a recreation of Speed. This means the game has no turns, and needs a "smart" AI opponent. This means that I had to change a lot. I split the deck into four parts: player one's deck, player two's deck, and the two normal decks that are used when neither player can do anything. I also changed the discard pile to be a button that is clicked, and added two of them to choose which pile you try to play. This means I made a lot of new functions, for example playCard because it had no place to pass in a discard pile. The way I made the computer was I just set it so every second it tries to play a card, if it can't it draws, and if it can't draw it signals that it can't do anything. When it can't do anything, the game looks at player one's hand and if they can't do anything the top card of the discards is drawn from the two normal decks.
