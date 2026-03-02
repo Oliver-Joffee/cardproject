@@ -14,9 +14,15 @@ public class App extends PApplet {
         size(600, 600);   
     }
 
+    public void endGame(int player) {
+        background(255);
+        text("PLAYER " + player + "WINS", 300, 300);
+    }
+
     @Override
     public void draw() {
         background(255);
+        
 
         //Use computer
         computer.draw();
@@ -76,6 +82,12 @@ public class App extends PApplet {
         }
 
         cardGame.drawChoices(this);
+        if (cardGame.playerOneDeck.size() == 0 && cardGame.playerOneHand.getSize() == 0) {
+            endGame(1);
+        }
+        if (cardGame.playerTwoDeck.size() == 0 && cardGame.playerTwoHand.getSize() == 0) {
+            endGame(2);
+        }
     }
 
     
