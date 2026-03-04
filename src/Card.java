@@ -59,6 +59,8 @@ public class Card extends ClickableRectangle {
         return selected;
     }
 
+
+
     @Override
     public boolean isClicked(int mouseX, int mouseY) {
         // Only the left sliver of the card is clickable

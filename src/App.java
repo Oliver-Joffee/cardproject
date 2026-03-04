@@ -28,13 +28,23 @@ public class App extends PApplet {
 
     public void endGame(int player) {
         background(255);
-        text("PLAYER " + player + " WINS", 300, 300);
+
+        if (player == 3) {
+            text("TIE, NO CARDS IN SIDE DECKS", 300, 300);
+        }
+        else {
+            text("PLAYER " + player + " WINS", 300, 300);
+        }
+        fill(200);
         newGameButton.draw(this);
+        fill(0);
         text("NEW GAME?", newGameButton.x + newGameButton.width/2, newGameButton.y + newGameButton.height/2);
     }
 
     @Override
     public void draw() {
+        if (game) {
+        
         background(255);
         
 
@@ -104,6 +114,12 @@ public class App extends PApplet {
             endGame(2);
             game = false;
         }
+        if (cardGame.deck1.size() == 0) {
+            System.out.println("HEELP");
+            endGame(3);
+            game = false;
+        }
+    }
     }
 
     
@@ -115,6 +131,7 @@ public class App extends PApplet {
             if (newGameButton.isClicked(dmouseX, dmouseY)) {
                 game = true;
                 cardGame = new Speed();
+                computer = new SpeedComputer(cardGame);
             }
         }
     }

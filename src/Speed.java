@@ -45,24 +45,29 @@ public class Speed extends CardGame {
         playerTwoHand = new Hand(); 
     }
 
-    public void checkForPlays() {
+    public boolean checkForPlays() {
         if (playerOneHand.getSize() == 5) {
             if (!checkHand(playerOneHand)) {
-                playExtra();
+                
+                return playExtra();
+                
             }
+            
         }
+        return true;
     }
 
-    public void playExtra() {
+    public boolean playExtra() {
         if (deck1.size() > 0) {
-        Card card = deck1.remove(0);
-        card.setTurned(false);
-        discard1.add(card);
-        Card card2 = deck2.remove(0);
-        card2.setTurned(false);
-        discard2.add(card2);
+            Card card = deck1.remove(0);
+            card.setTurned(false);
+            discard1.add(card);
+            Card card2 = deck2.remove(0);
+            card2.setTurned(false);
+            discard2.add(card2);
+            return true;
         }
-        System.out.println("HEEELP STALEMATE");
+        return false;
     }
 
     public boolean checkHand(Hand hand) {
@@ -145,10 +150,12 @@ public class Speed extends CardGame {
         if (selectedCard != null) {
             if (pile1.isClicked(mouseX, mouseY)) {
                 playCard(selectedCard, playerOneHand, discard1);
+                selectedCard.setSelected(false, 0);
                 selectedCard = null;
             }
             if (pile2.isClicked(mouseX, mouseY)){
                 playCard(selectedCard, playerOneHand, discard2);
+                selectedCard.setSelected(false, 0);
                 selectedCard = null;
             }
         }
@@ -158,7 +165,7 @@ public class Speed extends CardGame {
     @Override
     public void dealCards(int numCards) {
         Collections.shuffle(deck);
-        for (int i = 0; i < 21; i ++) {
+        for (int i = 0; i < 20; i ++) {
             Card card = deck.remove(0);
             card.setTurned(true);
             playerOneDeck.add(card);
@@ -168,7 +175,7 @@ public class Speed extends CardGame {
 
         }
 
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 6; i++) {
             Card card = deck.remove(0);
             card.setTurned(true);
             deck1.add(card);
