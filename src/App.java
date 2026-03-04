@@ -2,9 +2,17 @@ import processing.core.PApplet;
 
 public class App extends PApplet {
 
+
+    ClickableRectangle newGameButton = new ClickableRectangle();
     Speed cardGame = new Speed();
     SpeedComputer computer = new SpeedComputer(cardGame);
     private int timer;
+    int gameButtonX = 250;
+    int gameButtonY = 400;
+    int gameButtonWidth = 100;
+    int gameButtonHeight = 35;
+    boolean game = true;
+    
 
     public static void main(String[] args) {
         PApplet.main("App");
@@ -12,11 +20,17 @@ public class App extends PApplet {
     @Override
     public void settings() {
         size(600, 600);   
+        newGameButton.x = gameButtonX;
+        newGameButton.y = gameButtonY;
+        newGameButton.width = gameButtonWidth;
+        newGameButton.height = gameButtonHeight;
     }
 
     public void endGame(int player) {
         background(255);
-        text("PLAYER " + player + "WINS", 300, 300);
+        text("PLAYER " + player + " WINS", 300, 300);
+        newGameButton.draw(this);
+        text("NEW GAME?", newGameButton.x + newGameButton.width/2, newGameButton.y + newGameButton.height/2);
     }
 
     @Override
@@ -84,9 +98,11 @@ public class App extends PApplet {
         cardGame.drawChoices(this);
         if (cardGame.playerOneDeck.size() == 0 && cardGame.playerOneHand.getSize() == 0) {
             endGame(1);
+            game = false;
         }
         if (cardGame.playerTwoDeck.size() == 0 && cardGame.playerTwoHand.getSize() == 0) {
             endGame(2);
+            game = false;
         }
     }
 
@@ -95,5 +111,11 @@ public class App extends PApplet {
     public void mousePressed() {
         cardGame.handleDrawButtonClick(mouseX, mouseY);
         cardGame.handleCardClick(mouseX, mouseY);
+        if (!game) {
+            if (newGameButton.isClicked(dmouseX, dmouseY)) {
+                game = true;
+                cardGame = new Speed();
+            }
+        }
     }
 }
